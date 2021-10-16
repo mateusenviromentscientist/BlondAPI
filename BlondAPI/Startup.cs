@@ -30,7 +30,7 @@ namespace BlondAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
-            services.AddSingleton<IBlondDatabaseSettings>(sp => (IBlondDatabaseSettings)sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+            services.AddSingleton(sp => (IBlondeDatabaseSettings)sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
             services.AddSingleton<BlondService>();
             services.AddControllers();
             services.Configure<DatabaseSettings>(Configuration.GetSection("BlondDatabaseSettings"));
